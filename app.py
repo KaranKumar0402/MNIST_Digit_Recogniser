@@ -12,7 +12,7 @@ st.header("By Karan Kumar Singh")
 
 image2 = st.file_uploader(label="Upload image", type=['jpg', 'png'])
 
-if st.button("Predict"):
+if st.button("Recognise"):
     if image2 is not None:
         # Manual Image processing
         resized_image = tf.keras.preprocessing.image.load_img(image2, target_size=(28,28))  # Resizing it to 28x28
@@ -31,6 +31,6 @@ if st.button("Predict"):
             elif finalimg[0][i] >= 0.66:
                 finalimg[0][i] = 1.0
 
-        st.success(f"Predicted Number: {SVM.predict(finalimg)[0]}")
+        st.success(f"Recognised Number: {SVM.predict(finalimg)[0]}")
     else:
         st.write("Make sure you image is in JPG/PNG Format.")
