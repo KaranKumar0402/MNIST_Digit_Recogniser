@@ -12,7 +12,7 @@ st.header("By Karan Kumar Singh")
 
 image2 = st.file_uploader(label="Upload image", type=['jpg', 'png'])
 
-if st.button("Upload Image"):
+if st.button("Predict"):
     if image2 is not None:
         # Manual Image processing
         resized_image = tf.keras.preprocessing.image.load_img(image2, target_size=(28,28))  # Resizing it to 28x28
