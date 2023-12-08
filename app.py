@@ -27,9 +27,9 @@ if st.button("Upload Image"):
 
         # Filtering out unnecessary pixels by converting it to 0 or 1 to increase accuracy
         for i in range(784):
-            if finalimg[0][i] <= 0.39:
+            if finalimg[0][i] <= 0.42:
                 finalimg[0][i] = 0.0
-            elif finalimg[0][i] >= 0.66:
+            elif finalimg[0][i] >= 0.52:
                 finalimg[0][i] = 1.0
 
         st.success(f"Predicted Number: {SVM.predict(finalimg)[0]}")
