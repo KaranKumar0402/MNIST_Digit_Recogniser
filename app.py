@@ -1,6 +1,7 @@
 import pickle
 import streamlit as st
 import tensorflow as tf
+import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.svm import SVC
 
@@ -32,5 +33,12 @@ if st.button("Upload Image"):
                 finalimg[0][i] = 1.0
 
         st.success(f"Predicted Number: {SVM.predict(finalimg)[0]}")
+        # Preparing the final input image to show
+        showimg = finalimg.reshape((28, 28)) * 25
+        plt.gray()
+        plt.imshow(showimg, interpolation='nearest')
+        plt.savefig('numimg.png')
+
+        st.image('numimg.png')
     else:
         st.write("Make sure you image is in JPG/PNG Format.")
