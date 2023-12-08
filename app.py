@@ -37,8 +37,8 @@ if st.button("Upload Image"):
         showimg = finalimg.reshape((28, 28)) * 25
         plt.gray()
         plt.imshow(showimg, interpolation='nearest')
-        plt.savefig('numimg.png')
+        plt.savefig('num_img.png')
 
-        st.image('numimg.png')
+        st.image('num_img.png')
     else:
         st.write("Make sure you image is in JPG/PNG Format.")
