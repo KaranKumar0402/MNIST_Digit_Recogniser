@@ -2,7 +2,6 @@ import pickle
 import streamlit as st
 import tensorflow as tf
 import numpy as np
-import matplotlib.pyplot as plt
 from sklearn.svm import SVC
 
 pickle_in = open('SVMClassifier.pkl', 'rb')
@@ -13,7 +12,7 @@ st.header("By Karan Kumar Singh")
 
 image2 = st.file_uploader(label="Upload image", type=['jpg', 'png'])
 
-if st.button("Recognise"):
+if st.button("Upload Image"):
     if image2 is not None:
         # Manual Image processing
         resized_image = tf.keras.preprocessing.image.load_img(image2, target_size=(28,28))  # Resizing it to 28x28
@@ -27,18 +26,11 @@ if st.button("Recognise"):
 
         # Filtering out unnecessary pixels by converting it to 0 or 1 to increase accuracy
         for i in range(784):
-            if finalimg[0][i] <= 0.42:
+            if finalimg[0][i] <= 0.39:
                 finalimg[0][i] = 0.0
-            elif finalimg[0][i] >= 0.59:
+            elif finalimg[0][i] >= 0.66:
                 finalimg[0][i] = 1.0
-        showimg = finalimg.reshape((28, 28)) * 25
 
         st.success(f"Predicted Number: {SVM.predict(finalimg)[0]}")
-        plt.gray()
-        plt.imshow(showimg, interpolation='nearest')
-        plt.savefig('numimg.png')
-
-        st.image('numimg.png')
     else:
         st.write("Make sure you image is in JPG/PNG Format.")
-
